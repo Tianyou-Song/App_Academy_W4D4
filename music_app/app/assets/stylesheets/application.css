@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  color: white;
+  background-color: black;
+}
+
+.logged {
+  float: right;
+}
+
+a {
+  color: orange;
+  background-color: blue;
+  border-radius: 4px;
+}
