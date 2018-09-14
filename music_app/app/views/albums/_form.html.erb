@@ -1,0 +1,37 @@
+<p>by <%= album.band.name %></p>
+
+<% if album.persisted? %>
+  <% action = album_url(album) %>
+  <% submit_txt = "Update" %>
+  <a href="<%= album_url(album) %>">&lt--back</a>
+<% else %>
+  <% action = albums_url %>
+  <% submit_txt = "Create" %>
+  <a href="<%= band_url(album.band) %>">&lt--back</a>
+<% end %>
+
+<form action="<%= action %>" method="post">
+  <%= auth_token %>
+  <% if album.persisted? %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+
+  <input type="hidden" name="album[band_id]" value="<%= album.band_id %>"
+
+  <label for="title">Album title:</label>
+  <input type="string" name="album[title]" id="title" value="<%= album.title %>">
+  <br>
+
+  <label for="year">Year:</label>
+  <input type="integer" name="album[year]" id="year" value="<%= album.year %>">
+  <br>
+
+  <input type="radio" name="album[live]" value=false <%= album.live == false ? "checked" : "" %>>
+  <label for="studiio">studio</label>
+
+  <input type="radio" name="album[live]" value=true <%= album.live == true ? "checked" : "" %>>
+  <label for="live">live</label>
+  <br>
+
+  <input type="submit" value="<%= submit_txt %>">
+</form>

@@ -1,0 +1,38 @@
+<h2>Album</h2>
+
+<div class="float_left">
+  <h3><%= @album.title %></h3>
+
+  <a href="<%= edit_album_url(@album.id) %>">Edit</a>
+
+  <form action="<%= album_url(@album.id) %>" method="post">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+</div>
+
+<table>
+  <tr>
+    <th>Artist:</th>
+    <th><a href="<%= band_url(@album.band) %>"><%= @album.band.name %></a></th>
+  </tr>
+
+  <tr>
+    <th>Year:</th>
+    <th><%= @album.year %></th>
+  </tr>
+
+  <tr>
+    <th>Type:</th>
+
+    <th>
+      <% if @album.live %>
+        Live
+      <% else %>
+        Studio
+      <% end %>
+    </th>
+
+  </tr>
+</table>
